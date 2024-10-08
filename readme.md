@@ -11,3 +11,9 @@
 1. After labelling, execute this command at repo's root directory.(replace {} with your prefered value)  
 `labelme2yolo --json_dir ./ --val_size {ValidatePercentage} --test_size {TestPercentage} --output_format bbox`  
 1. Try PoC.ipynb out!  
+
+# committers
+## 大成輝
+## 河野天星
+## 坂島悠太
+## 山根涼
