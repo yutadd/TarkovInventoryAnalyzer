@@ -1,0 +1,30 @@
+#query to https://api.tarkov.dev/
+{
+  items(lang: en, name: "9x19mm Pst gzh") {
+    id
+    name
+    avg24hPrice
+  }
+}
+# answer
+{
+  "data": {
+    "items": [
+      {
+        "id": "56d59d3ad2720bdb418b4577",
+        "name": "9x19mm Pst gzh",
+        "avg24hPrice": 84
+      },
+      {
+        "id": "5739d41224597779c3645501",
+        "name": "9x19mm Pst gzh ammo pack (16 pcs)",
+        "avg24hPrice": null
+      },
+      {
+        "id": "657025a81419851aef03e724",
+        "name": "9x19mm Pst gzh ammo pack (50 pcs)",
+        "avg24hPrice": null
+      }
+    ]
+  }
+}

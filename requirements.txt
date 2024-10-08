@@ -1,0 +1,6 @@
+labelme
+ultralytics
+labelme2yolo
+torch
+torchvision
+torchaudio
