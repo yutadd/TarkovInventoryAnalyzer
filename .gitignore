@@ -3,3 +3,4 @@ runs/
 yolov8n.pt
 YOLODataset/
 labelme2yolo/
+.history/

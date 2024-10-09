@@ -1,9 +1,19 @@
 #query to https://api.tarkov.dev/
 {
-  items(lang: en, name: "9x19mm Pst gzh") {
+  items(names: "ai-2") {
     id
-    name
-    avg24hPrice
+    buyFor {
+      price
+      source
+      currency
+    }
+    sellFor {
+      currency
+      price
+      vendor {
+        name
+      }
+    }
   }
 }
 # answer
@@ -11,20 +21,91 @@
   "data": {
     "items": [
       {
-        "id": "56d59d3ad2720bdb418b4577",
-        "name": "9x19mm Pst gzh",
-        "avg24hPrice": 84
-      },
-      {
-        "id": "5739d41224597779c3645501",
-        "name": "9x19mm Pst gzh ammo pack (16 pcs)",
-        "avg24hPrice": null
-      },
-      {
-        "id": "657025a81419851aef03e724",
-        "name": "9x19mm Pst gzh ammo pack (50 pcs)",
-        "avg24hPrice": null
+        "id": "5755356824597772cb798962",
+        "name": "AI-2 medkit",
+        "buyFor": [
+          {
+            "price": 6638,
+            "source": "therapist",
+            "currency": "RUB"
+          },
+          {
+            "price": 7678,
+            "source": "fleaMarket",
+            "currency": "RUB"
+          }
+        ],
+        "sellFor": [
+          {
+            "currency": "RUB",
+            "price": 2600,
+            "vendor": {
+              "name": "Prapor"
+            }
+          },
+          {
+            "currency": "RUB",
+            "price": 3276,
+            "vendor": {
+              "name": "Therapist"
+            }
+          },
+          {
+            "currency": "RUB",
+            "price": 2080,
+            "vendor": {
+              "name": "Fence"
+            }
+          },
+          {
+            "currency": "RUB",
+            "price": 3120,
+            "vendor": {
+              "name": "Jaeger"
+            }
+          },
+          {
+            "currency": "RUB",
+            "price": 6638,
+            "vendor": {
+              "name": "Flea Market"
+            }
+          }
+        ]
       }
+    ]
+  }
+}
+
+# query2
+{
+  tasks {
+    id
+    name
+    objectives {
+      ... on TaskObjectiveItem {
+        count
+        items {
+          name
+        }
+      }
+    }
+  }
+}
+
+# answer2
+{
+  "data": {
+    "tasks": [
+      {
+      "id": "657315df034d76585f032e01",
+        "name": "Shooting Cans",
+        "objectives": [
+          {},
+          {},
+          {}
+        ]
+      },
     ]
   }
 }
