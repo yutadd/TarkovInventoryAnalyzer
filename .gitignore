@@ -2,5 +2,5 @@ dataset/
 runs/
 yolov8n.pt
 YOLODataset/
-labelme2yolo/
+labelme2yolo.exe
 .history/
