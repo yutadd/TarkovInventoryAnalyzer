@@ -4,3 +4,4 @@ labelme2yolo
 torch
 torchvision
 torchaudio
+-f https://download.pytoarch.org/whl/cu118
