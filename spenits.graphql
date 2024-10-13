@@ -109,3 +109,105 @@
     ]
   }
 }
+# query 3 hideout items
+{
+  hideoutStations {
+    name
+    levels {
+      itemRequirements {
+        item {
+          name
+        }
+        count
+      }
+      level
+    }
+  }
+}
+# answer 3
+{
+  "data": {
+    "hideoutStations": [
+      {
+        "name": "Heating",
+        "levels": [
+          {
+            "level": 1,
+            "itemRequirements": [
+              {
+                "count": 25000,
+                "item": {
+                  "name": "Roubles"
+                }
+              },
+              {
+                "count": 2,
+                "item": {
+                  "name": "Classic matches"
+                }
+              }
+            ]
+          },
+          {
+            "level": 2,
+            "itemRequirements": [
+              {
+                "count": 50000,
+                "item": {
+                  "name": "Roubles"
+                }
+              },
+              {
+                "count": 2,
+                "item": {
+                  "name": "Hunting matches"
+                }
+              },
+              {
+                "count": 3,
+                "item": {
+                  "name": "Dry fuel"
+                }
+              },
+              {
+                "count": 3,
+                "item": {
+                  "name": "Crickent lighter"
+                }
+              }
+            ]
+          },
+          {
+            "level": 3,
+            "itemRequirements": [
+              {
+                "count": 8,
+                "item": {
+                  "name": "Radiator helix"
+                }
+              },
+              {
+                "count": 8,
+                "item": {
+                  "name": "Bundle of wires"
+                }
+              },
+              {
+                "count": 4,
+                "item": {
+                  "name": "Phase control relay"
+                }
+              },
+              {
+                "count": 2,
+                "item": {
+                  "name": "Military corrugated tube"
+                }
+              }
+            ]
+          }
+        ]
+      },
+    ]
+  }
+}
