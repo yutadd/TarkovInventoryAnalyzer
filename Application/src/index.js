@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, clipboard } = require('electron');
 const path = require('node:path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -12,7 +12,11 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
+      nodeIntegration: false,
+      contextIsolation:true,
+      sandbox:true,
       preload: path.join(__dirname, 'preload.js'),
+      
     },
   });
 
@@ -22,6 +26,9 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
+ipcMain.handle('get-clipboard-text', ()=> {
+  return clipboard.readImage();
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
