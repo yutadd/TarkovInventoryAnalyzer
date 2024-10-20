@@ -1,0 +1,14 @@
+/* Start of Selection */
+.Sidebar{
+    width:30%;
+    height:100%;
+    display:inline-block;
+    box-shadow: 0px 0px 8px black;
+    vertical-align: top;
+}
+@media screen and (max-width: 768px) {
+    .Sidebar {
+        display: none;
+    }
+}
+/* End of Selection */
