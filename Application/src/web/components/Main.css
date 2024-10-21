@@ -1,12 +1,27 @@
-.Sidebar{
-    width:30%;
-    height:100%;
-    display:inline-block;
-    box-shadow: 0px 0px 8px black;
+.Main {
+    width: 70%;
+    height: 100%;
+    display: inline-block;
     vertical-align: top;
+    text-align: center;
 }
+
 @media screen and (max-width: 768px) {
-    .Sidebar {
+    .Main {
         display: none;
     }
+}
+
+.AskAutoPasteText {
+    font-size: 20px;
+}
+
+.ImageSelectionPane {
+    background-color: gray;
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
