@@ -30,6 +30,7 @@ def upload_image():
         image.save(image_bytes, format='JPEG')
         image_bytes = image_bytes.getvalue()
         item_names = analyze_image_with_yolo(image)
+        # TODO: 検出したオブジェクトの位置がわかる画像を一緒に返してもいいかも
         return jsonify(item_names), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -47,7 +48,7 @@ def analyze_image_with_yolo(image):
         labels = r.names
         for box in r.boxes:
             item_names.append(labels[int(box.cls[0])])
-    
+    item_names = list(set(item_names))
     return item_names
 if __name__ == '__main__':
     app.run(debug=False,port=8080)

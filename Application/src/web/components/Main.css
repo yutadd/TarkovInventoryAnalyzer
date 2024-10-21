@@ -1,9 +1,11 @@
 .Main {
-    width: 70%;
+    width: calc(70% - 10px);
     height: 100%;
     display: inline-block;
     vertical-align: top;
-    text-align: center;
+    text-align: left;
+    padding-left:10px;
+    overflow: scroll;
 }
 
 @media screen and (max-width: 768px) {

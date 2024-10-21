@@ -2,6 +2,7 @@ body{
     margin:0px;
     font-family: 'BIZ UDP Gothic', sans-serif;
     font-weight: bold;
+    overflow-y: hidden;
 }
 .Container{
     height:100vh
