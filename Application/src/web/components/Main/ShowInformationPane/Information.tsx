@@ -1,55 +1,34 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext, contextType } from "../../../App";
 import './Information.css'
+import { fetchItemDetails, fetchHideoutItem, fetchTaskItem } from "./queryInformation/queryInformation";
 
 export const Information = ({ itemName }: { itemName: string }) => {
     const context = useContext<contextType>(AppContext);
     const [itemDetails, setItemDetails] = useState<any>(null);
+    const [hideoutInfo, setHideoutInfo] = useState<any[]>([]);
+    const [taskInfo, setTaskInfo] = useState<any[]>([]);
 
     useEffect(() => {
-        const fetchItemDetails = async () => {
-            try {
-                const response = await fetch('https://api.tarkov.dev/graphql', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        query: `
-                        {
-                          items(names: "${itemName}") {
-                            id
-                            buyFor {
-                              price
-                              source
-                              currency
-                            }
-                            sellFor {
-                              currency
-                              price
-                              vendor {
-                                name
-                              }
-                            }
-                            image512pxLink
-                          }
-                        }
-                        `
-                    }),
-                });
+        fetchItemDetails(itemName).then(_itemDetails => {
+            console.log(_itemDetails);
+            setItemDetails(_itemDetails);
+        });
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                setItemDetails(data.data.items[0]);
-            } catch (error) {
-                console.error('Error fetching item details:', error);
+        fetchHideoutItem(itemName).then(_hideoutInfo => {
+            console.log(_hideoutInfo);
+            if(_hideoutInfo){
+                setHideoutInfo(_hideoutInfo);
             }
-        };
+        });
 
-        fetchItemDetails();
+        fetchTaskItem(itemName).then(_taskInfo => {
+            console.log(_taskInfo);
+            if(_taskInfo){
+                setTaskInfo(_taskInfo);
+            }
+            
+        });
     }, [itemName]);
 
     return (
@@ -76,6 +55,32 @@ export const Information = ({ itemName }: { itemName: string }) => {
                     </ul>
                     <h3>Image:</h3>
                     <img src={itemDetails.image512pxLink} alt={`${itemName} image`} />
+                </div>
+            )}
+            {hideoutInfo.length > 0 && (
+                <div>
+                    <h3>Hideout Information:</h3>
+                    {hideoutInfo.map((info, index) => (
+                        <div key={index}>
+                            <p>Station: {info.station}</p>
+                            <p>Level: {info.level}</p>
+                            <p>Item: {info.item}</p>
+                            <p>Count: {info.count}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+            {taskInfo.length > 0 && (
+                <div>
+                    <h3>Task Information:</h3>
+                    {taskInfo.map((info, index) => (
+                        <div key={index}>
+                            <p>Task ID: {info.task_id}</p>
+                            <p>Task Name: {info.task_name}</p>
+                            <p>Item: {info.item}</p>
+                            <p>Count: {info.count}</p>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

@@ -25,13 +25,14 @@ export const UploadImage = () => {
                     (async () => {
                         const image: Electron.NativeImage = await window.API.getClipboardText();
                         if (!image.isEmpty()) {
-                            console.log("querying");
+                            
                             const dataUrl = image.toDataURL();
                             const response = await fetch(dataUrl);
                             const blob = await response.blob();
                             const file = new File([blob], "clipboard-image.png", { type: blob.type });
                             const fileHash = await calculateHash(file);
                             if (fileHash !== lastUploadedImageHash) {
+                                console.log("querying");
                                 await handleImageUpload(file, fileHash);
                                 if (fileHash) {
                                     lastUploadedImageHash = fileHash;
