@@ -11,10 +11,11 @@ app.whenReady().then(() => {
       preload: path.resolve(__dirname, "preload.js"),
     },
   });
-
   mainWindow.loadFile("dist/index.html");
   // mainWindow.webContents.openDevTools({ mode: "detach" });
 });
+
+
 ipcMain.handle('get-clipboard-image', (): Electron.NativeImage => {
   return clipboard.readImage();
 });

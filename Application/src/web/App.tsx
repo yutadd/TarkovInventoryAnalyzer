@@ -10,10 +10,10 @@ import "./App.css"
 import { Sidebar } from "./components/Sidebar";
 import { Main } from "./components/Main";
 
-export type contextType = { loading: boolean, setLoading: any, items: any[], setItems: any }
+export type contextType = { loading: boolean, setLoading: any, items: string[], setItems: any }
 export const App = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [items, setItems] = useState<any[]>([]);
+    const [items, setItems] = useState<string[]>([]);
     useEffect(() => {
     }, []);
     return (

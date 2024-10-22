@@ -11,3 +11,10 @@
     align-items: center;
     justify-content: center;
 }
+.UploadedImagePreview{
+    padding-top: 20px;
+
+}
+.RefleshTimeBar{
+    margin-bottom: 20px;
+}

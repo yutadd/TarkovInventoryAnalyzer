@@ -1,11 +1,12 @@
-#query to https://api.tarkov.dev/
+#query to https://api.tarkov.dev/graphql
 {
   items(names: "ai-2") {
     id
     buyFor {
       price
-      source
-      currency
+      vendor {
+        name
+      }
     }
     sellFor {
       currency
@@ -14,6 +15,7 @@
         name
       }
     }
+    image512pxLink
   }
 }
 # answer
@@ -22,19 +24,7 @@
     "items": [
       {
         "id": "5755356824597772cb798962",
-        "name": "AI-2 medkit",
-        "buyFor": [
-          {
-            "price": 6638,
-            "source": "therapist",
-            "currency": "RUB"
-          },
-          {
-            "price": 7678,
-            "source": "fleaMarket",
-            "currency": "RUB"
-          }
-        ],
+        "image512pxLink": "https://assets.tarkov.dev/5755356824597772cb798962-512.webp",
         "sellFor": [
           {
             "currency": "RUB",
@@ -66,7 +56,21 @@
           },
           {
             "currency": "RUB",
+            "price": 6600,
+            "vendor": {
+              "name": "Flea Market"
+            }
+          }
+        ],
+        "buyFor": [
+          {
             "price": 6638,
+            "vendor": {
+              "name": "Therapist"
+            }
+          },
+          {
+            "price": 6988,
             "vendor": {
               "name": "Flea Market"
             }
