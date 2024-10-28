@@ -6,15 +6,16 @@ export const ItemInformationPanelList = () => {
     const context = useContext<contextType>(AppContext)
     const [itemInformationPanelList, setItemInformationPanelList] = useState<JSX.Element[]>([])
     useEffect(() => {
-        setItemInformationPanelList([])
+        const newPanelList: JSX.Element[] = [];
         for (const dateKeyedItems of context.dateKeyedItemGroup) {
             if (dateKeyedItems.date === context.selectedTimeStamp) {
                 for (const itemData of dateKeyedItems.itemDataList) {
-                    const _element = (<ItemInformationPanel key={itemData.name+dateKeyedItems.date} itemName={itemData.name} />)
-                    setItemInformationPanelList((before) => [_element, ...before])
+                    const _element = (<ItemInformationPanel key={itemData.name + dateKeyedItems.date} itemName={itemData.name} />);
+                    newPanelList.push(_element);
                 }
             }
         }
+        setItemInformationPanelList(newPanelList);
     }, [context.selectedTimeStamp]);
     return (
         <div className="ShowInformationPane">

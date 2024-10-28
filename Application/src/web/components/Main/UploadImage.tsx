@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { AppContext, contextType, ItemData } from "../../App";
 import './UploadImage.css'
 export const UploadImage = () => {
+    //TODO: 処理を一部外部化する
     const context = useContext<contextType>(AppContext)
     const [uploadedImage, setUploadedImage] = useState<File | null>(null)
     const [autoPaste, setAutoPaste] = useState<boolean>(false);
@@ -70,8 +71,8 @@ export const UploadImage = () => {
             const _datetime=Date.now()
             context.setDateKeyedItemGroup((before: any)=>{return [{date:_datetime,itemDataList},...before]})
             context.setSelectedTimeStamp(_datetime)
+            console.log("execution setSelectedTimeStamp")
             context.setLoading(false);
-
         } else {
             console.log('The file is not a valid image.');
         }

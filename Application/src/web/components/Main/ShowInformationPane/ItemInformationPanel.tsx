@@ -4,28 +4,25 @@ import './ItemInformation.css'
 import { fetchItemDetails, fetchHideoutItem, fetchTaskItem } from "./queryInformation/queryInformation";
 
 export const ItemInformationPanel = ({ itemName }: { itemName: string }) => {
-    const context = useContext<contextType>(AppContext);
     const [itemDetails, setItemDetails] = useState<any>(null);
     const [hideoutInfo, setHideoutInfo] = useState<any[]>([]);
     const [taskInfo, setTaskInfo] = useState<any[]>([]);
-
+//TODO: 情報の取得処理をuploadImage.tsxに移動する
     useEffect(() => {
-        fetchItemDetails(itemName).then(_itemDetails => {
-            setItemDetails(_itemDetails);
-        });
-
-        fetchHideoutItem(itemName).then(_hideoutInfo => {
-            if(_hideoutInfo){
-                setHideoutInfo(_hideoutInfo);
-            }
-        });
-
-        fetchTaskItem(itemName).then(_taskInfo => {
-            if(_taskInfo){
-                setTaskInfo(_taskInfo);
-            }
-            
-        });
+            console.log("execution fetch from ItemInformationPanel.tsx:"+itemName)
+            fetchItemDetails(itemName).then(_itemDetails => {
+                setItemDetails(_itemDetails);
+            });
+            fetchHideoutItem(itemName).then(_hideoutInfo => {
+                if (_hideoutInfo) {
+                    setHideoutInfo(_hideoutInfo);
+                }
+            });
+            fetchTaskItem(itemName).then(_taskInfo => {
+                if (_taskInfo) {
+                    setTaskInfo(_taskInfo);
+                }
+            });
     }, [itemName]);
 
     return (
