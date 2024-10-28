@@ -2,16 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext, contextType } from "../App";
 import './Main.css'
 import { UploadImage } from "./Main/UploadImage";
-import { ShowInformation } from "./Main/ShowInformation";
+import { ItemInformationPanelList } from "./Main/ItemInformationPanelList";
 export const Main = () => {
-    const context = useContext<contextType>(AppContext)
-    useEffect(() => {
+    const context = useContext<contextType>(AppContext);
 
-    }, []);
+    useEffect(() => {
+        console.log(context.dateKeyedItemGroup,context.loading,context.selectedTimeStamp)
+    },[context.dateKeyedItemGroup,context.loading,context.selectedTimeStamp]);
     return (
         <div className="Main">
             <UploadImage/>
-            <ShowInformation />
+            <ItemInformationPanelList/>
         </div>
     );
 };

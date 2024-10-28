@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { AppContext, contextType } from "../../App";
+import { AppContext, contextType, ItemData } from "../../App";
 import './UploadImage.css'
 export const UploadImage = () => {
     const context = useContext<contextType>(AppContext)
@@ -41,7 +41,6 @@ export const UploadImage = () => {
                                 console.log('The clipboard image is the same as the last uploaded image.');
                             }
                         }
-
                         console.log("処理後")
                         isProcessing = false;
                     })();
@@ -64,7 +63,13 @@ export const UploadImage = () => {
             });
             const data = await response.json();
             console.log('Upload successful:', data);
-            context.setItems(data);
+            var itemDataList:ItemData[]=[];
+            for(const itemName of data){
+                itemDataList.push({id:"",buyFor:[],image512pxLink:"",name:itemName,sellFor:[]})
+            }
+            const _datetime=Date.now()
+            context.setDateKeyedItemGroup((before: any)=>{return [{date:_datetime,itemDataList},...before]})
+            context.setSelectedTimeStamp(_datetime)
             context.setLoading(false);
 
         } else {
@@ -118,7 +123,7 @@ export const UploadImage = () => {
             </div>
             {uploadedImage && (
                 <div className="UploadedImagePreview">
-                    <p>uploadedImage</p>
+                    <p className="AskAutoPasteText">uploadedImage</p>
                     <img src={URL.createObjectURL(uploadedImage)} alt="Uploaded Preview" />
                 </div>
             )}

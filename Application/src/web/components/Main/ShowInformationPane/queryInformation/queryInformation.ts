@@ -1,4 +1,4 @@
-export async function fetchItemDetails(itemName:string){
+export async function fetchItemDetails(itemName: string): Promise<{ id: string; buyFor: { price: number; source: string; currency: string; }[]; sellFor: { currency: string; price: number; vendor: { name: string; }; }[]; image512pxLink: string; } | undefined> {
     try {
         const response = await fetch('https://api.tarkov.dev/graphql', {
             method: 'POST',

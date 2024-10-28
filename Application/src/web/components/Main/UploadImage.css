@@ -1,5 +1,6 @@
 .AskAutoPasteText {
     font-size: 20px;
+    margin: 0px;
 }
 
 .ImageSelectionPane {
@@ -13,7 +14,6 @@
 }
 .UploadedImagePreview{
     padding-top: 20px;
-
 }
 .RefleshTimeBar{
     margin-bottom: 20px;

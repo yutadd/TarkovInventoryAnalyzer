@@ -13,6 +13,7 @@
     }
 }
 .ItemListLink{
-    display:block
+    display:block;
+    padding-left: 20px;
 }
 /* End of Selection */

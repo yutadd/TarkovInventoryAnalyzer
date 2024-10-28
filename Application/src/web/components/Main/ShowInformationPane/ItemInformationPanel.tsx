@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext, contextType } from "../../../App";
-import './Information.css'
+import './ItemInformation.css'
 import { fetchItemDetails, fetchHideoutItem, fetchTaskItem } from "./queryInformation/queryInformation";
 
-export const Information = ({ itemName }: { itemName: string }) => {
+export const ItemInformationPanel = ({ itemName }: { itemName: string }) => {
     const context = useContext<contextType>(AppContext);
     const [itemDetails, setItemDetails] = useState<any>(null);
     const [hideoutInfo, setHideoutInfo] = useState<any[]>([]);
@@ -11,19 +11,16 @@ export const Information = ({ itemName }: { itemName: string }) => {
 
     useEffect(() => {
         fetchItemDetails(itemName).then(_itemDetails => {
-            console.log(_itemDetails);
             setItemDetails(_itemDetails);
         });
 
         fetchHideoutItem(itemName).then(_hideoutInfo => {
-            console.log(_hideoutInfo);
             if(_hideoutInfo){
                 setHideoutInfo(_hideoutInfo);
             }
         });
 
         fetchTaskItem(itemName).then(_taskInfo => {
-            console.log(_taskInfo);
             if(_taskInfo){
                 setTaskInfo(_taskInfo);
             }
@@ -32,7 +29,7 @@ export const Information = ({ itemName }: { itemName: string }) => {
     }, [itemName]);
 
     return (
-        <div key={itemName} id={itemName} className={"Information"}>
+        <div id={itemName} className={"Information"}>
             <h2>{itemName}</h2>
             {itemDetails && (
                 <div>
