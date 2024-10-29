@@ -18,3 +18,9 @@
 .RefleshTimeBar{
     margin-bottom: 20px;
 }
+
+.PreviewImage{
+    object-fit: cover;
+    width:300px;
+    height:300px;
+}

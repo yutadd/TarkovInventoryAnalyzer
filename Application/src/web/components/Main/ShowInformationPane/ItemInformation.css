@@ -1,0 +1,17 @@
+.ItemImage{
+    display:inline-block;
+    width:100px;
+    vertical-align: top;
+}
+
+.TaskAndHideout{
+    display:inline-block;
+    width: 300px;
+    vertical-align: top;
+}
+
+.MarketValue{
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+}

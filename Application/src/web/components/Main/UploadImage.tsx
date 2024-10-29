@@ -70,7 +70,7 @@ export const UploadImage = () => {
             {uploadedImage && (
                 <div className="UploadedImagePreview">
                     <p className="AskAutoPasteText">uploadedImage</p>
-                    <img src={URL.createObjectURL(uploadedImage)} alt="Uploaded Preview" />
+                    <img className="PreviewImage" src={URL.createObjectURL(uploadedImage)} alt="Uploaded Preview" />
                 </div>
             )}
         </div>
