@@ -11,7 +11,7 @@ export async function upload(lastUploadedImageHash: string,context:any,setUpload
         const fileHash = await calculateHash(file);
         if (fileHash !== lastUploadedImageHash) {
             console.log("querying");
-            await handleImageUpload(file, fileHash,context,setUploadedImage);
+            await handleImageUpload(file, context,setUploadedImage,fileHash,);
             if (fileHash) {
                 lastUploadedImageHash = fileHash;
             }
