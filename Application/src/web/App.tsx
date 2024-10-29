@@ -11,7 +11,9 @@ import { createContext } from "react";
 import "./App.css"
 import { Sidebar } from "./components/Sidebar";
 import { Main } from "./components/Main";
-export type ItemData={ id: string,name:string, buyFor: { price: number, source: string, currency: string }[], sellFor: { currency: string, price: number, vendor: { name: string } }[], image512pxLink: string };
+export type TaskItemData={ task_id: string; task_name: string; item: string; count: number };
+export type ItemHideoutData={ station: string; level: number; item: string; count: number }
+export type ItemData={ id: string,name:string, buyFor: { price: number, source: string, currency: string }[], sellFor: { currency: string, price: number, vendor: { name: string } }[], image512pxLink: string,hideout:ItemHideoutData[],task:TaskItemData[]};
 export type DateKeyedItem={ date: number,itemDataList:ItemData[]}
 export type contextType = { loading: boolean, setLoading: any, dateKeyedItemGroup: DateKeyedItem[], setDateKeyedItemGroup: any,selectedTimeStamp:number,setSelectedTimeStamp:any }
 export const App = () => {

@@ -10,7 +10,7 @@ export const ItemInformationPanelList = () => {
         for (const dateKeyedItems of context.dateKeyedItemGroup) {
             if (dateKeyedItems.date === context.selectedTimeStamp) {
                 for (const itemData of dateKeyedItems.itemDataList) {
-                    const _element = (<ItemInformationPanel key={itemData.name + dateKeyedItems.date} itemName={itemData.name} />);
+                    const _element = (<ItemInformationPanel key={itemData.name + dateKeyedItems.date} itemData={itemData} />);
                     newPanelList.push(_element);
                 }
             }

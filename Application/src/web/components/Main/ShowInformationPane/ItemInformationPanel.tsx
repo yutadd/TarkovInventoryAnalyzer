@@ -1,39 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext, contextType } from "../../../App";
+import { AppContext, contextType, ItemData } from "../../../App";
 import './ItemInformation.css'
-import { fetchItemDetails, fetchHideoutItem, fetchTaskItem } from "./queryInformation/queryInformation";
 
-export const ItemInformationPanel = ({ itemName }: { itemName: string }) => {
-    const [itemDetails, setItemDetails] = useState<any>(null);
-    const [hideoutInfo, setHideoutInfo] = useState<any[]>([]);
-    const [taskInfo, setTaskInfo] = useState<any[]>([]);
-//TODO: 情報の取得処理をuploadImage.tsxに移動する
-    useEffect(() => {
-            console.log("execution fetch from ItemInformationPanel.tsx:"+itemName)
-            fetchItemDetails(itemName).then(_itemDetails => {
-                setItemDetails(_itemDetails);
-            });
-            fetchHideoutItem(itemName).then(_hideoutInfo => {
-                if (_hideoutInfo) {
-                    setHideoutInfo(_hideoutInfo);
-                }
-            });
-            fetchTaskItem(itemName).then(_taskInfo => {
-                if (_taskInfo) {
-                    setTaskInfo(_taskInfo);
-                }
-            });
-    }, [itemName]);
-
+export const ItemInformationPanel = ({ itemData }: { itemData: ItemData}) => {
+    const context = useContext(AppContext);
     return (
-        <div id={itemName} className={"Information"}>
-            <h2>{itemName}</h2>
-            {itemDetails && (
+        <div id={itemData.id} className={"Information"}>
+            <h2>{itemData.name}</h2>
                 <div>
-                    <p>ID: {itemDetails.id}</p>
+                    <p>ID: {itemData.id}</p>
                     <h3>Buy For:</h3>
                     <ul>
-                        {itemDetails.buyFor.map((buy: any, index: number) => (
+                        {itemData.buyFor.map((buy: any, index: number) => (
                             <li key={index}>
                                 {buy.price} {buy.currency} from {buy.source}
                             </li>
@@ -41,20 +19,19 @@ export const ItemInformationPanel = ({ itemName }: { itemName: string }) => {
                     </ul>
                     <h3>Sell For:</h3>
                     <ul>
-                        {itemDetails.sellFor.map((sell: any, index: number) => (
+                        {itemData.sellFor.map((sell: any, index: number) => (
                             <li key={index}>
                                 {sell.price} {sell.currency} to {sell.vendor.name}
                             </li>
                         ))}
                     </ul>
                     <h3>Image:</h3>
-                    <img src={itemDetails.image512pxLink} alt={`${itemName} image`} />
+                    <img src={itemData.image512pxLink} alt={`${itemData} image`} />
                 </div>
-            )}
-            {hideoutInfo.length > 0 && (
+            {itemData.hideout.length > 0 && (
                 <div>
                     <h3>Hideout Information:</h3>
-                    {hideoutInfo.map((info, index) => (
+                    {itemData.hideout.map((info, index) => (
                         <div key={index}>
                             <p>Station: {info.station}</p>
                             <p>Level: {info.level}</p>
@@ -64,10 +41,10 @@ export const ItemInformationPanel = ({ itemName }: { itemName: string }) => {
                     ))}
                 </div>
             )}
-            {taskInfo.length > 0 && (
+            {itemData.task.length > 0 && (
                 <div>
                     <h3>Task Information:</h3>
-                    {taskInfo.map((info, index) => (
+                    {itemData.task.map((info, index) => (
                         <div key={index}>
                             <p>Task ID: {info.task_id}</p>
                             <p>Task Name: {info.task_name}</p>

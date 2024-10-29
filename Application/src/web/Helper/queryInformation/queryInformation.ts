@@ -1,4 +1,7 @@
-export async function fetchItemDetails(itemName: string): Promise<{ id: string; buyFor: { price: number; source: string; currency: string; }[]; sellFor: { currency: string; price: number; vendor: { name: string; }; }[]; image512pxLink: string; } | undefined> {
+import { useContext } from "react";
+import { AppContext, ItemData, ItemHideoutData, TaskItemData } from "../../App";
+
+export async function fetchItemDetails(itemName: string): Promise<ItemData | undefined> {
     try {
         const response = await fetch('https://api.tarkov.dev/graphql', {
             method: 'POST',
@@ -38,7 +41,7 @@ export async function fetchItemDetails(itemName: string): Promise<{ id: string; 
         console.error('Error fetching item details:', error);
     }
 }
-export async function fetchHideoutItem(itemName: string): Promise<void | { station: string; level: number; item: string; count: number }[]> {
+export async function fetchHideoutItem(itemName: string): Promise<void | ItemHideoutData[]> {
     try {
         const response = await fetch(`http://localhost:8080/search_hideouts?item_name=${encodeURIComponent(itemName)}`, {
             method: 'GET',
@@ -56,7 +59,7 @@ export async function fetchHideoutItem(itemName: string): Promise<void | { stati
     }
 }
 
-export async function fetchTaskItem(itemName: string): Promise<void | { task_id: string; task_name: string; item: string; count: number }[]> {
+export async function fetchTaskItem(itemName: string): Promise<void | TaskItemData[]> {
     try {
         const response = await fetch(`http://localhost:8080/search_tasks?item_name=${encodeURIComponent(itemName)}`, {
             method: 'GET',
