@@ -21,7 +21,7 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
         })
     }, [itemData])
     return (
-        <div id={itemData.id} className={"Information"}>
+        <div id={itemData.name} className={"Information"}>
             <h2>{itemData.name}</h2>
             <img className="ItemImage" src={itemData.image512pxLink} alt={`${itemData} image`} />
             <div className="TaskAndHideout">
