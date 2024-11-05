@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { AppContext, contextType, ItemData } from "../../App";
 import './UploadImage.css'
 import { calculateHash, handleImageUpload, upload } from "../../Helper/queryInformation/Image";
+import { Loading } from "./Loading";
 export const UploadImage = () => {
     const context = useContext<contextType>(AppContext)
     const [uploadedImage, setUploadedImage] = useState<File | null>(null)
@@ -65,7 +66,7 @@ export const UploadImage = () => {
                 }}
                 onDragOver={(e) => e.preventDefault()}
             >
-                <p>Drag & Drop your file here</p>
+                <p className="DropText">Drag & Drop your file here</p>
             </div>
             {uploadedImage && (
                 <div className="UploadedImagePreview">
@@ -75,6 +76,7 @@ export const UploadImage = () => {
                     </div>
                 </div>
             )}
+            {context.loading?<Loading />:<></>}
         </div>
     );
 };

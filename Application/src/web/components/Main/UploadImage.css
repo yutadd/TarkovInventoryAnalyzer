@@ -22,6 +22,10 @@
 .RefleshTimeBar{
     margin-bottom: 20px;
 }
+.DropText{
+    font-size: 30px;
+    color:#ddd
+}
 .ImagePreviewContainer{
     text-align: center;
     display:block;
@@ -30,4 +34,7 @@
     object-fit: cover;
     width:1000px;
     height:500px;
+}
+.LoadingText{
+    font-size: 30px;
 }
