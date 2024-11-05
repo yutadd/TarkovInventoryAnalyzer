@@ -6,7 +6,7 @@ export const UploadImage = () => {
     const context = useContext<contextType>(AppContext)
     const [uploadedImage, setUploadedImage] = useState<File | null>(null)
     const [autoPaste, setAutoPaste] = useState<boolean>(false);
-    const [refleshTime,setRefleshTime]=useState(2000);
+    const [refleshTime, setRefleshTime] = useState(2000);
     useEffect(() => {
         let intervalId: NodeJS.Timeout;
         if (autoPaste) {
@@ -16,8 +16,8 @@ export const UploadImage = () => {
                 console.log("処理前" + isProcessing)
                 if (!isProcessing) {
                     isProcessing = true;
-                    lastUploadedImageHash=await upload(lastUploadedImageHash,context,setUploadedImage);
-                    isProcessing=false;
+                    lastUploadedImageHash = await upload(lastUploadedImageHash, context, setUploadedImage);
+                    isProcessing = false;
                 }
             }, refleshTime);
         }
@@ -56,7 +56,7 @@ export const UploadImage = () => {
                         if (files.length > 0) {
                             const file = files[0];
                             const fileHash = await calculateHash(file);
-                            handleImageUpload(file, context,setUploadedImage,fileHash);
+                            handleImageUpload(file, context, setUploadedImage, fileHash);
                             console.log('The dropped image is the same as the last uploaded image.');
                         }
                     } else {
@@ -69,8 +69,10 @@ export const UploadImage = () => {
             </div>
             {uploadedImage && (
                 <div className="UploadedImagePreview">
-                    <p className="AskAutoPasteText">uploadedImage</p>
-                    <img className="PreviewImage" src={URL.createObjectURL(uploadedImage)} alt="Uploaded Preview" />
+                    <p className="UploadedImagePreviewTitle">uploadedImage</p>
+                    <div className="ImagePreviewContainer">
+                        <img className="PreviewImage" src={URL.createObjectURL(uploadedImage)} alt="Uploaded Preview" />
+                    </div>
                 </div>
             )}
         </div>

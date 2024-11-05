@@ -1,11 +1,15 @@
 /* Start of Selection */
+.SidebarContainer{
+    position:absolute;
+}
 .Sidebar{
-    width:30%;
-    height:100%;
+    width:30vw;
+    height:100vh;
     display:inline-block;
-    box-shadow: 0px 0px 8px black;
     overflow-y: scroll;
     vertical-align: top;
+    background-color: white;
+    border-right:2px solid black;
 }
 @media screen and (max-width: 768px) {
     .Sidebar {
@@ -15,5 +19,17 @@
 .ItemListLink{
     display:block;
     padding-left: 20px;
+}
+.ExpandSidebar{
+    height: 128px;
+    width:25px;
+    font-size: 17px;
+    writing-mode: vertical-lr;
+    word-wrap: break-word;
+    display: inline-block;
+    background-color: white;
+    text-align: center;
+    border-right:2px solid black;
+    border-bottom: 2px solid black;
 }
 /* End of Selection */

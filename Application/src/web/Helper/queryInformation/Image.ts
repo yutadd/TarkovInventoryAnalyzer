@@ -65,7 +65,7 @@ export const handleImageUpload = async (file: File, context:any,setUploadedImage
             });
         }
         
-        const _datetime = Date.now();
+        const _datetime = Date.now()+".png";
         context.setDateKeyedItemGroup((before: any) => { return [{ date: _datetime, itemDataList }, ...before] });
         context.setSelectedTimeStamp(_datetime);
         console.log("execution setSelectedTimeStamp");

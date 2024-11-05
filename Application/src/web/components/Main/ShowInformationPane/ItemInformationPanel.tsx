@@ -17,19 +17,21 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
                 maxTraderPrice = buyData.price
                 maxTraderName = buyData.source
             }
-            setTraderValue(`${maxTraderName}: $${buyData.price}${buyData.currency === "RUB" ? "₽" : buyData.currency === "USD" ? "USD" : "???"}`)
+            setTraderValue(`${maxTraderName}: ${buyData.price}${buyData.currency === "RUB" ? "₽" : buyData.currency === "USD" ? "USD" : "???"}`)
         })
     }, [itemData])
-    return (
+    return (<>
+    <hr />
+        <h2>{itemData.name}</h2>
         <div id={itemData.name} className={"Information"}>
-            <h2>{itemData.name}</h2>
+
             <img className="ItemImage" src={itemData.image512pxLink} alt={`${itemData} image`} />
             <div className="TaskAndHideout">
                 {itemData.hideout.length > 0 && (
                     <div>
                         <h3>Hideout Information:</h3>
                         {itemData.hideout.map((info, index) => (
-                            <div key={index}>
+                            <div key={index} >
                                 <p>Station: {info.station}</p>
                                 <p>Level: {info.level}</p>
                                 <p>Item: {info.item}</p>
@@ -57,5 +59,6 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
                 <p>fleaMarket: {flareValue}</p>
             </div>
         </div>
+    </>
     );
 };

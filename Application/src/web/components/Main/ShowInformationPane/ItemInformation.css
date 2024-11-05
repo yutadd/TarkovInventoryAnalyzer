@@ -3,14 +3,17 @@
     width:100px;
     vertical-align: top;
 }
-
+.Information{
+    text-align: center;
+}
 .TaskAndHideout{
+    text-align: left;
     display:inline-block;
-    width: 300px;
+    width: 400px;
     vertical-align: top;
 }
-
 .MarketValue{
+    text-align: left;
     display: inline-block;
     width: 300px;
     vertical-align: top;
