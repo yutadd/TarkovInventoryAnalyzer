@@ -1,6 +1,6 @@
 # Tarkov inventry Analyzer
 ![wip](https://img.shields.io/badge/WIP%20-red)
-## committers
+## Committers
 坂島悠太  
 大成輝  
 河野天星  
@@ -8,6 +8,16 @@
 石橋怜大  
 ## About
 This software and server enable users to efficiently manage their Escape from Tarkov inventory by capturing screenshots and automatically analyzing them.  
+## Analyzable task items
+Army bandage​  
+Aseptic bandage​  
+Immobilizing splint  
+Bottle of water (0.6L)​  
+Can of beef stew (Small)​  
+Can of condensed milk  
+Pack of sugar​  
+Screw nut​  
+Physical Bitcoin​  
 ## Experiment version
 **Note:** This image represents an experimental version of the UI and is subject to change in the future.  
 As shown in the following images, you can view details of "market value," "task demand," and "hideout demand."
@@ -19,6 +29,22 @@ Result
 ![image](./resources/3.png)
 Result2
 ![image](./resources/4.png)
+## How to use the tool
+### Server
+1. You need to open the Server directory in the TarkovInventoryAnalyzer directory and start the Python file labeled `app.py`.
+```bash
+python app.py
+```
+### Application
+1. You need to open the Application directory of the TarkovInventoryAnalyzer directory and install the node package.  
+**Note:** If you have installed the node package once, skip this task.
+```bash
+npm i
+```
+2. Then you need to launch the application.
+```bash
+npm run dev
+```
 ## Task
 坂島悠太: Tech Lead, Engineering, Management  
 大成輝: UI adjustments  
