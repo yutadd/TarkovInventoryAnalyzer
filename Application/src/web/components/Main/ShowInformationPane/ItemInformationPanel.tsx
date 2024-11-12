@@ -13,11 +13,17 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
             if (buyData.source === "fleaMarket") {
                 setFlareValue(`${buyData.price}${buyData.currency === "RUB" ? "₽" : buyData.currency === "USD" ? "USD" : "???"}`)
             }
-            if (buyData.price > maxTraderPrice) {
-                maxTraderPrice = buyData.price
-                maxTraderName = buyData.source
+        })
+        itemData.sellFor.map(sellData => {
+            if (sellData.price > maxTraderPrice) {
+                if (sellData.vendor.name !== "Flea Market"){
+                    maxTraderPrice = sellData.price
+                    maxTraderName = sellData.vendor.name
+                }
             }
-            setTraderValue(`${maxTraderName}: ${buyData.price}${buyData.currency === "RUB" ? "₽" : buyData.currency === "USD" ? "USD" : "???"}`)
+            if (maxTraderName !== "???"){
+            setTraderValue(`${maxTraderName}: ${sellData.price}${sellData.currency === "RUB" ? "₽" : sellData.currency === "USD" ? "USD" : "???"}`)
+            }
         })
     }, [itemData])
     return (<>
