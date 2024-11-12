@@ -127,7 +127,7 @@ def analyze_image_with_cv2(image):
             result = cv2.matchTemplate(screenshot, template, cv2.TM_CCOEFF_NORMED)
 
             # 類似度の閾値を設定して、アイテムの位置を確認
-            threshold = 0.76
+            threshold = 0.77
             locations = np.where(result >= threshold)
 
             # 検出された位置があれば、アイテム名をリストに追加
