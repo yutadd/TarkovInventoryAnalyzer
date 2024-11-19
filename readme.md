@@ -8,7 +8,7 @@ And this repository is only a POC to see if the pattern matching process can be 
 But you might use this repository as framework for item detection tool.  
 ## Screenshot
 Demo video and application description.
-[![image](./resources/3.png)](https://youtu.be/xNW-fTdD4p8)  
+[![image](./resources/5.png)](https://youtu.be/xNW-fTdD4p8)  
 Demo video and application description.
 This application automatically analyzes screenshots of the game “Escape from Tarkov” to extract items and display information about them.
 Enable the checkbox at the top of the screen to automatically capture and analyze screenshots.
