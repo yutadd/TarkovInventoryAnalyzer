@@ -25,7 +25,7 @@ There are only 26 items this POC can detects. But you can add items manually, ea
 
 ## Instllation steps
 **NOTE:** Following steps is are only valid at current experiment version.  
-Note: A tutorial video is also available below.  
+A tutorial video is also available below.  
 1. First, run this cmd to launch a server-side program.  
     ```bash
     cd Server
@@ -36,6 +36,8 @@ Note: A tutorial video is also available below.
     ```
 1. Second, download dataset from github-release tab and put like this:
 ```TODO: add dataset directory structure```
+## Launch application steps
+```TODO: launch steps```
 ## Committers
 坂島悠太: Tech Lead, Engineering, Management  
 大成輝: UI adjustments  
