@@ -66,7 +66,7 @@ export const UploadImage = () => {
                 }}
                 onDragOver={(e) => e.preventDefault()}
             >
-                <p className="DropText">Drag & Drop your file here</p>
+                <p className="DropText">OR Drop your file here</p>
             </div>
             {uploadedImage && (
                 <div className="UploadedImagePreview">

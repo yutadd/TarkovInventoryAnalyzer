@@ -10,6 +10,7 @@ app.whenReady().then(() => {
       nodeIntegration: false,
       preload: path.resolve(__dirname, "preload.js"),
     },
+    icon: __dirname + '../../assets/win/icon.ico',
   });
   mainWindow.loadFile("dist/index.html");
   // mainWindow.webContents.openDevTools({ mode: "detach" });
