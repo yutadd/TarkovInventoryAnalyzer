@@ -1,11 +1,11 @@
 # Tarkov inventry Analyzer
 ![wip](https://img.shields.io/badge/WIP%20-red)
 ## Committers
-坂島悠太  
-大成輝  
-河野天星  
-山根涼  
-石橋怜大  
+坂島悠太: Tech Lead, Engineering, Management  
+大成輝: UI adjustments  
+河野天星: create dataset image  
+山根涼: create dataset image  
+石橋怜大: create dataset image 
 ## About
 This software and server enable users to efficiently manage their Escape from Tarkov inventory by capturing screenshots and automatically analyzing them.  
 ## Analyzable task items
@@ -45,11 +45,6 @@ npm i
 ```bash
 npm run dev
 ```
-## Task
-坂島悠太: Tech Lead, Engineering, Management  
-大成輝: UI adjustments  
-河野天星: create new dataset image  
-山根涼: create new dataset image  
-石橋怜大: testing AI  
+
 ## Schedule plan
 The entire process from image upload to displaying analysis results has been completed. However, there are still challenges with the limited number of supported items, the accuracy of item detection, and the UI design. It is expected to take several weeks to improve these aspects.
