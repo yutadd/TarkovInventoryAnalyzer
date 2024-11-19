@@ -21,7 +21,27 @@ Result2
 There are only 26 items this POC can detects. But you can add items manually, easily.  
 ```TODO: descrive about how to add item.```
 ## Repository structure
-```TODO: create repository structure overview```
+```
+TarkovInventoryAnalyzer
+│  readme.md -> Overview for this application.
+│  References.txt -> Websites we consulted in creating this application.
+│  spenits.graphql -> Query file for Tarkov API.
+│
+├─Application -> Application directory for launching this application.
+│                      
+├─POC
+│      PoC.ipynb -> Proof-of-Concept for Application Server.
+│      
+├─resources -> Images directory in read.md file for Github.
+│      
+└─Server
+    │  app.py -> Server required for this application.
+    │  requirements.txt -> Server library required for this application.
+    │  
+    └─itemImages -> Image directory required for dataset.
+        └─1920x1080
+                Q2FuaXN0ZXIgd2l0aCBwdXJpZmllZCB3YXRlcg==.png
+```
 
 ## Instllation steps
 **NOTE:** Following steps is are only valid at current experiment version.  
