@@ -19,8 +19,11 @@ The menu shows the time the detection was started and the items found.
 This feature can also be used as a history function.
 The analysis results of multiple screenshots can be saved and later switched between them.
 ## Supported items
-There are only 26 items this POC can detects. But you can add items manually, easily.  
-```TODO: descrive about how to add item.```
+There are only 26 items this POC can detects. But you can add items manually, easily.
+Cut out each item in the inventory image using Paint or other editing software.
+When cropping, crop the image of the item, being careful not to include the item name, weight, symbols, etc.
+(*Because the value may change depending on the situation.)
+
 ## Repository structure
 ```bash
 TarkovInventoryAnalyzer
