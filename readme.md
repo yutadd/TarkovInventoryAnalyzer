@@ -7,21 +7,22 @@
 And this repository is only a POC to see if the pattern matching process can be employed for item detection.  
 But you might use this repository as framework for item detection tool.  
 ## Screenshot
-As shown in the following images, you can view details of "market value," "task demand," and "hideout demand."  
-After launch:  
-```TODO: create demo video and replace this```
-![image](./resources/1.png)
-After past and analyze image:  
-![image](./resources/2.png)
-Result
-![image](./resources/3.png)
-Result2
-![image](./resources/4.png)
+Demo video and application description.
+![image](https://youtu.be/xNW-fTdD4p8)  
+Demo video and application description.
+This application automatically analyzes screenshots of the game “Escape from Tarkov” to extract items and display information about them.
+Enable the checkbox at the top of the screen to automatically capture and analyze screenshots.
+Below that, a slider allows you to set how often the clipboard is monitored, in milliseconds.
+As screenshots are taken, they are automatically analyzed and information about the items found is displayed.
+The information displayed includes information about in-game tasks and market value (the item's selling price).
+The menu shows the time the detection was started and the items found.
+This feature can also be used as a history function.
+The analysis results of multiple screenshots can be saved and later switched between them.
 ## Supported items
 There are only 26 items this POC can detects. But you can add items manually, easily.  
 ```TODO: descrive about how to add item.```
 ## Repository structure
-```
+```bash
 TarkovInventoryAnalyzer
 │  readme.md -> Overview for this application.
 │  References.txt -> Websites we consulted in creating this application.
@@ -57,7 +58,22 @@ A tutorial video is also available below.
 1. Second, download dataset from github-release tab and put like this:
 ```TODO: add dataset directory structure```
 ## Launch application steps
-```TODO: launch steps```
+1. Starts the server
+``` bash
+    cd Server
+    python3 ./app.py
+```
+Result 1
+![image](./resources/5.png)
+2. Launch another terminal
+3. Launch the application
+``` bash
+    cd  ./Applicaiton
+    npm run dev
+```
+Result 3
+![image](./resources/6.png)
+ 
 ## Committers
 坂島悠太: Tech Lead, Engineering, Management  
 大成輝: UI adjustments  
