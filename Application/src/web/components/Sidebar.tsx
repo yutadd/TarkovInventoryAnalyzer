@@ -8,7 +8,8 @@ export const Sidebar = () => {
     useEffect(() => {
         setItemList([<span key="all">({context.dateKeyedItemGroup.length === 0 ? "NONE" : "ALL"})</span>,
         ...context.dateKeyedItemGroup.map((dateKeyedItemList, index) => {
-            //TODO:　コードをわかりやすくする
+            //TODO:　リストの縮小展開かのうにする
+            //https://webukatu.com/wordpress/blog/8571/
             return <div key={index} className="ScreenshotNumber">
                 {index === context.dateKeyedItemGroup.length - 1 ? "└ " : "├ "}
                 <a href="#" onClick={() => context.setSelectedTimeStamp(dateKeyedItemList.date)}>{dateKeyedItemList.date}</a>

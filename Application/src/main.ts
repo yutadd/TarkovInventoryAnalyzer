@@ -21,3 +21,6 @@ ipcMain.handle('get-clipboard-image', (): Electron.NativeImage => {
   return clipboard.readImage();
 });
 app.once("window-all-closed", () => app.quit());
+/**
+ * TODO:読み込みたい画像パスを引数にして呼び出すと、画像を読み込んで、Electron.NativeImageで画像を返す関数を作る
+ */
