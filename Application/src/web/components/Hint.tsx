@@ -23,8 +23,7 @@ export const Hint = () => {
     }, [context.dateKeyedItemGroup]);
     return (<div className="HintContainer">
         {context.isHintShown && <div className="Hint">
-            {itemList}
-        </div>}<div className="ExpandHint" onClick={()=>context.setIsHintShown((before:boolean)=>!before)}>{context.isHintShown?"hide　⋁":"hint"}</div>
+        </div>}<div className="ExpandHint" onClick={()=>context.setIsHintShown((before:boolean)=>!before)}>{context.isHintShown?"hide　∧":"hint　⋁"}</div>
     </div>
     );
 };
