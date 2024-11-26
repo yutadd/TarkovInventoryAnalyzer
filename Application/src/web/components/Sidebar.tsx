@@ -1,31 +1,58 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import './Sidebar.css'
+
 export const Sidebar = () => {
-    const context = useContext(AppContext)
-    const [itemList, setItemList] = useState<JSX.Element[]>([])
+    const context = useContext(AppContext);
+    const [itemList, setItemList] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        setItemList([<span key="all">({context.dateKeyedItemGroup.length === 0 ? "NONE" : "ALL"})</span>,
-        ...context.dateKeyedItemGroup.map((dateKeyedItemList, index) => {
-            //TODO:　リストの縮小展開かのうにする
-            //https://webukatu.com/wordpress/blog/8571/
-            return <div key={index} className="ScreenshotNumber">
-                {index === context.dateKeyedItemGroup.length - 1 ? "└ " : "├ "}
-                <a href="#" onClick={() => context.setSelectedTimeStamp(dateKeyedItemList.date)}>{dateKeyedItemList.date}</a>
-                {dateKeyedItemList.itemDataList.map((itemDetail, index) => {
-                    return <a className="ItemListLink" key={index} href={"#" + itemDetail.name}>
-                        {index === dateKeyedItemList.itemDataList.length - 1 ? "└ " : "├ "}{itemDetail.name}
-                    </a>
-                })}
-            </div>
-        }
-        )]);
+        setItemList([
+            <details key="all" open>
+                <summary>({context.dateKeyedItemGroup.length === 0 ? "NONE" : "ALL"})</summary>
+                {context.dateKeyedItemGroup.map((dateKeyedItemList, index) => (
+                    <details key={index} open>
+                        <summary>
+                            {index === context.dateKeyedItemGroup.length - 1 ? "└ " : "├ "}
+                            <a
+                                href="#"
+                                onClick={() => context.setSelectedTimeStamp(dateKeyedItemList.date)}
+                            >
+                                {dateKeyedItemList.date}
+                            </a>
+                        </summary>
+                        <ul className="ItemList">
+                            {dateKeyedItemList.itemDataList.map((itemDetail, idx) => (
+                                <li key={idx}>
+                                    <a
+                                        className="ItemListLink"
+                                        href={"#" + itemDetail.name}
+                                    >
+                                        {idx === dateKeyedItemList.itemDataList.length - 1 ? "└ " : "├ "}
+                                        {itemDetail.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
+                ))}
+            </details>
+        ]);
     }, [context.dateKeyedItemGroup]);
-    return (<div className="SidebarContainer">
-        {context.isSidebarShown && <div className="Sidebar">
-            {itemList}
-        </div>}<div className="ExpandSidebar" onClick={()=>context.setIsSidebarShown((before:boolean)=>!before)}>{context.isSidebarShown?"hide　⋁":"menu　∧"}</div>
-    </div>
+
+    return (
+        <div className="SidebarContainer">
+            {context.isSidebarShown && (
+                <div className="Sidebar">
+                    {itemList}
+                </div>
+            )}
+            <div
+                className="ExpandSidebar"
+                onClick={() => context.setIsSidebarShown((before: boolean) => !before)}
+            >
+                {context.isSidebarShown ? "hide　⋁" : "menu　∧"}
+            </div>
+        </div>
     );
 };

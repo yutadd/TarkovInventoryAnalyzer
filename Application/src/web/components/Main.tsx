@@ -17,7 +17,6 @@ export const Main = () => {
         <div className="Main">
             <UploadImage/>
             <ItemInformationPanelList/>
-            {/* TODO:追加した画像を適切な大きさにする */}
             <img className="usageimage" src={objectUrl} alt="" />
         </div>
     );
