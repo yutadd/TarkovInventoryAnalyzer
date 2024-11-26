@@ -24,3 +24,6 @@ app.once("window-all-closed", () => app.quit());
 /**
  * TODO:読み込みたい画像パスを引数にして呼び出すと、画像を読み込んで、Electron.NativeImageで画像を返す関数を作る
  */
+ipcMain.handle('get-local-image', (e,filepass): string => {
+  return nativeImage.createFromPath(filepass).toDataURL()
+});

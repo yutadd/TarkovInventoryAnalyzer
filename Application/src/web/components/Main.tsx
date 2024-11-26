@@ -4,16 +4,21 @@ import './Main.css'
 import { UploadImage } from "./Main/UploadImage";
 import { ItemInformationPanelList } from "./Main/ItemInformationPanelList";
 export const Main = () => {
+    const [objectUrl,setObjectUrl]=useState("")
     const context = useContext<contextType>(AppContext);
     useEffect(() => {
-        console.log(context.dateKeyedItemGroup,context.loading,context.selectedTimeStamp)
+        async function getUrl() {
+            setObjectUrl(await window.API.getLocalText("C:\\Users\\narih\\OneDrive\\デスクトップ\\tarkov\\TarkovInventoryAalyzer\\Application\\assets\\usage.png"))
+        }
+        console.log(context.dateKeyedItemGroup, context.loading, context.selectedTimeStamp)
+        getUrl()
     },[context.dateKeyedItemGroup,context.loading,context.selectedTimeStamp]);
     return (
         <div className="Main">
             <UploadImage/>
             <ItemInformationPanelList/>
             {/* TODO:追加した画像を適切な大きさにする */}
-            <img src={/* TODO: window.API.<src/main.tsに追加した関数()>に置き換える */""} alt="" />
+            <img className="usageimage" src={objectUrl} alt="" />
         </div>
     );
 };
