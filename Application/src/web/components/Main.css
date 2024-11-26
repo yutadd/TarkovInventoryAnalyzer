@@ -7,6 +7,7 @@
     padding-left:35px;
     padding-top:10px;
     overflow: scroll;
+    scrollbar-width: thin;
 }
 .usageimage {
     width: 700px;
