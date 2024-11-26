@@ -8,7 +8,7 @@ export const Main = () => {
     const context = useContext<contextType>(AppContext);
     useEffect(() => {
         async function getUrl() {
-            setObjectUrl(await window.API.getLocalText("C:\\Users\\narih\\OneDrive\\デスクトップ\\tarkov\\TarkovInventoryAalyzer\\Application\\assets\\usage.png"))
+            setObjectUrl(await window.API.getLocalText("assets\\usage.png"))
         }
         console.log(context.dateKeyedItemGroup, context.loading, context.selectedTimeStamp)
         getUrl()
