@@ -78,11 +78,11 @@ Result 3
 ![image](./resources/6.png)
  
 ## Committers
-坂島悠太: Tech Lead, Engineering, Management  
-大成輝: UI adjustments  
-河野天星: create dataset image  
-山根涼: create dataset image  
-石橋怜大: create dataset image 
+坂島悠太: Tech Lead, Management  
+大成輝: UI, Dataset, Document  
+河野天星: UI, Dataset, Document  
+山根涼: UI, Dataset, Document  
+石橋怜大: Dataset, Document 
 
 ## Schedule plan
 The entire process from image upload to displaying analysis results has been completed. However, there are still challenges with the limited number of supported items, the accuracy of item detection, and the UI design.
