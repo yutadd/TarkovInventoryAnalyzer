@@ -51,7 +51,7 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
                         <h3>Task Information:</h3>
                         {itemData.task.map((info, index) => (
                             <div key={index}>
-                                <p>Task Name: {info.task_name}</p>
+                                <p>Task Name: {info.taskName}</p>
                                 <p>Item: {info.item}</p>
                                 <p>Count: {info.count}</p>
                             </div>
