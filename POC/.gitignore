@@ -1,8 +1,0 @@
-dataset/
-runs/
-yolov8n.pt
-yolo11x.pt
-yolo11n.pt
-YOLODataset/
-labelme2yolo.exe
-.history/
