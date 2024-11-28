@@ -28,7 +28,15 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
     }, [itemData])
     return (<>
     <hr />
-        <h2>{itemData.name}</h2>
+    {/** 
+     * ・context.selectedLanguageには"en"か"ja"のどちらかが格納されている
+     * ・itemData(型:ItemData)のnameプロパティにはアイテムの名前が次のように格納されている：
+     * 　英語名+"§"+日本語名 例：Pack of sugar§角砂糖
+     * 
+     * TODO: ↓三項演算子を使った実装例
+    */}
+        <h2>{itemData.name.split("§")[context.selectedLanguage==="en"?0:1]}</h2>
+        
         <div id={itemData.name} className={"Information"}>
 
             <img className="ItemImage" src={itemData.image512pxLink} alt={`${itemData} image`} />

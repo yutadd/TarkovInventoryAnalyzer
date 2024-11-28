@@ -9,8 +9,10 @@ export const Language = () => {
 
     }, [context.dateKeyedItemGroup]);
     return (<div className="LanguageContainer">
-        <input type="button" value="日本語"/>
-        <input type="button" value="English"/>
+        <select value={context.selectedLanguage} onChange={(e) => context.setSelectedLanguage(e.target.value)}>
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
+        </select>
     </div>
     );
 };

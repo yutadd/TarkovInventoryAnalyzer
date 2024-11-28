@@ -46,10 +46,11 @@ export const handleImageUpload = async (file: File, context: any, setUploadedIma
                     let itemDataList: ItemData[] = [];
 
                     for (const itemName of data) {
+                        const exactItemName=itemName.split("§")[0]
                         await Promise.all([
-                            fetchItemDetails(itemName),
-                            fetchHideoutItem(itemName),
-                            fetchTaskItem(itemName)
+                            fetchItemDetails(exactItemName),
+                            fetchHideoutItem(exactItemName),
+                            fetchTaskItem(exactItemName)
                         ]).then(([itemDetails, hideoutData, taskData]) => {
                             if (itemDetails) {
                                 itemDataList.push({
@@ -62,7 +63,7 @@ export const handleImageUpload = async (file: File, context: any, setUploadedIma
                                     task: taskData || []
                                 });
                             } else {
-                                alert("assertion failed: item data(from graph) is null");
+                                console.log("assertion failed: item data(from graph) is null",exactItemName);
                             }
                         });
                     }

@@ -10,8 +10,8 @@ export const AppContext = createContext<contextType>({
     setIsSidebarShown: () => { },
     isHintShown: false,
     setIsHintShown: () => { },
-    isLanguageShown: false,
-    setIsLanguageShown: () => { },
+    selectedLanguage: "en",
+    setSelectedLanguage: () => { },
 });
 import { createContext } from "react";
 import "./App.css"
@@ -23,7 +23,7 @@ export type TaskItemData = { taskId: string; taskName: string; item: string; cou
 export type ItemHideoutData = { station: string; level: number; item: string; count: number }
 export type ItemData = { id: string, name: string, buyFor: { price: number, source: string, currency: string }[], sellFor: { currency: string, price: number, vendor: { name: string } }[], image512pxLink: string, hideout: ItemHideoutData[], task: TaskItemData[] };
 export type DateKeyedItem = { date: string, itemDataList: ItemData[] }
-export type contextType = { loading: boolean, setLoading: any, dateKeyedItemGroup: DateKeyedItem[], setDateKeyedItemGroup: any, selectedTimeStamp: string, setSelectedTimeStamp: any, isSidebarShown: boolean, setIsSidebarShown: any, isHintShown: boolean, setIsHintShown: any, isLanguageShown: boolean, setIsLanguageShown: any, }
+export type contextType = { loading: boolean, setLoading: any, dateKeyedItemGroup: DateKeyedItem[], setDateKeyedItemGroup: any, selectedTimeStamp: string, setSelectedTimeStamp: any, isSidebarShown: boolean, setIsSidebarShown: any, isHintShown: boolean, setIsHintShown: any, selectedLanguage: "en"|"ja", setSelectedLanguage: any, }
 
 export const App = () => {
     useEffect(() => {
@@ -83,9 +83,9 @@ export const App = () => {
     const [selectedTimeStamp, setSelectedTimeStamp] = useState<string>("")
     const [isSidebarShown, setIsSidebarShown] = useState<boolean>(false)
     const [isHintShown, setIsHintShown] = useState<boolean>(false)
-    const [isLanguageShown, setIsLanguageShown] = useState<boolean>(false)
+    const [selectedLanguage, setSelectedLanguage] = useState<"en"|"ja">("en")
     return (
-        <AppContext.Provider value={{ loading, setLoading, dateKeyedItemGroup, setDateKeyedItemGroup, selectedTimeStamp: selectedTimeStamp, setSelectedTimeStamp: setSelectedTimeStamp, isSidebarShown, setIsSidebarShown, isHintShown, setIsHintShown, isLanguageShown, setIsLanguageShown }}>
+        <AppContext.Provider value={{ loading, setLoading, dateKeyedItemGroup, setDateKeyedItemGroup, selectedTimeStamp: selectedTimeStamp, setSelectedTimeStamp: setSelectedTimeStamp, isSidebarShown, setIsSidebarShown, isHintShown, setIsHintShown, selectedLanguage, setSelectedLanguage }}>
             <div className="Container">
                 <Sidebar />
                 <Main />
