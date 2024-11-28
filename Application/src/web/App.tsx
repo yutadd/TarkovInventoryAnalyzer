@@ -74,6 +74,7 @@ export const App = () => {
                     console.log("analyzeImageWithCv2: returning:", detectedItems);
                     return detectedItems;
                 }
+                console.log("embeded analyze function in to window")
             }
         }, 100);
     }, []);
