@@ -6,4 +6,5 @@ interface Window {
     };
     analyzeImageWithCv2: (image: string) => Promise<string[]>;
           cv: any; // cvプロパティを追加
+          getHideoutItems: (image: string) => Promise<string>;
   }
