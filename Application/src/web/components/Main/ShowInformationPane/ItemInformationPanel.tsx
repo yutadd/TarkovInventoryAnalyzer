@@ -43,34 +43,34 @@ export const ItemInformationPanel = ({ itemData }: { itemData: ItemData }) => {
             <div className="TaskAndHideout">
                 {itemData.hideout.length > 0 && (
                     <div>
-                        <h3>Hideout Information:</h3>
+                        <h3>{context.selectedLanguage==="en"?"Hideout Information":"ハイドアウト情報"} </h3>
                         {itemData.hideout.map((info, index) => (
                             <div key={index} >
-                                <p>Station: {info.station}</p>
-                                <p>Level: {info.level}</p>
-                                <p>Item: {info.item}</p>
-                                <p>Count: {info.count}</p>
+                                <p>{context.selectedLanguage==="en"?"Station:":"ステーション："} {info.station}</p>
+                                <p>{context.selectedLanguage==="en"?"Level:":"レベル："} {info.level}</p>
+                                <p>{context.selectedLanguage==="en"?"Item:":"アイテム："} {info.item}</p>
+                                <p>{context.selectedLanguage==="en"?"Count:":"数："} {info.count}</p>
                             </div>
                         ))}
                     </div>
                 )}
                 {itemData.task.length > 0 && (
                     <div>
-                        <h3>Task Information:</h3>
+                        <h3>{context.selectedLanguage==="en"?"Task Information:":"タスク情報"} </h3>
                         {itemData.task.map((info, index) => (
                             <div key={index}>
-                                <p>Task Name: {info.taskName}</p>
-                                <p>Item: {info.item}</p>
-                                <p>Count: {info.count}</p>
+                                <p>{context.selectedLanguage==="en"?"Task Name:":"タスクの名前："} {info.taskName}</p>
+                                <p>{context.selectedLanguage==="en"?"Item:":"アイテム："} {info.item}</p>
+                                <p>{context.selectedLanguage==="en"?"Count:":"数："} {info.count}</p>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
             <div className="MarketValue">
-                <h3>MarketValue</h3>
-                <p>Trader: {traderValue}</p>
-                <p>fleaMarket: {flareValue}</p>
+                <h3>{context.selectedLanguage==="en"?"MarketValue":"マーケットバリュー"} </h3>
+                <p>{context.selectedLanguage==="en"?"Trader:":"トレーダー："} {traderValue}</p>
+                <p>{context.selectedLanguage==="en"?"fleaMarket:":"フリーマーケット："} {flareValue}</p>
             </div>
         </div>
     </>
