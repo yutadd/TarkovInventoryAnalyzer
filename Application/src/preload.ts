@@ -1,3 +1,5 @@
+import { ItemHideoutData } from "./web/App";
+
 const { contextBridge, ipcRenderer } = require('electron');
 
 type API = {
@@ -13,7 +15,7 @@ contextBridge.exposeInMainWorld('API', {
     return await ipcRenderer.invoke('get-local-image', filepass);
   }, getTemplateImages: async (): Promise<{ name: string, content: string }[]> => {
     return await ipcRenderer.invoke('get-template-images');
-  }, getHideoutItems: async (itemName: string): Promise<JSON> =>{
+  }, getHideoutItems: async (itemName: string): Promise<ItemHideoutData[]> =>{
     return await ipcRenderer.invoke('get-hideout-items', itemName);
   }
 });

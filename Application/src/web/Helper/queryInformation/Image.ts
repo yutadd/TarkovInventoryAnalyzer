@@ -49,7 +49,8 @@ export const handleImageUpload = async (file: File, context: any, setUploadedIma
                         const exactItemName=itemName.split("§")[0]
                         await Promise.all([
                             fetchItemDetails(exactItemName),
-                            fetchHideoutItem(exactItemName),
+                            //@ts-ignore
+                            window.API['getHideoutItems'](exactItemName),
                             fetchTaskItem(exactItemName)
                         ]).then(([itemDetails, hideoutData, taskData]) => {
                             if (itemDetails) {
