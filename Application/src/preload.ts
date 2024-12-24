@@ -1,4 +1,5 @@
 import { ItemHideoutData } from "./web/App";
+import { TaskItemData } from "./web/App";
 
 const { contextBridge, ipcRenderer } = require('electron');
 
@@ -6,6 +7,7 @@ type API = {
   getClipboardText: () => Promise<any>;
   getLocalText: (filepass: string) => Promise<string>;
   getTemplateImages: () => { name: string, content: string }[];
+  getTaskItemFromFile: (fileName:string, itemName:string) => TaskItemData[]
 };
 
 contextBridge.exposeInMainWorld('API', {
@@ -17,5 +19,7 @@ contextBridge.exposeInMainWorld('API', {
     return await ipcRenderer.invoke('get-template-images');
   }, getHideoutItems: async (itemName: string): Promise<ItemHideoutData[]> =>{
     return await ipcRenderer.invoke('get-hideout-items', itemName);
+  }, getTaskItemFromFile: async (fileName:string, itemName:string): Promise<TaskItemData[]> => {
+    return await ipcRenderer.invoke('getTaskItemFromFile', fileName, itemName);
   }
 });

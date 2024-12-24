@@ -3,6 +3,7 @@ import { BrowserWindow, app, ipcMain, clipboard, nativeImage } from "electron";
 // fsとpathをインポート
 import fs from "fs";
 import { ItemHideoutData } from "./web/App";
+import { TaskItemData } from "./web/App";
 
 app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
@@ -53,8 +54,35 @@ ipcMain.handle('get-template-images', (e,): { name: string, content: string }[] 
   return encodedFileData;
 });
 
-ipcMain.handle('get-hideout-items', (e, itemName: string): ItemHideoutData[] => {
-  const data = fs.readFileSync('hideoutItems.json')
+
+ipcMain.handle('getTaskItemFromFile', (e,fileName:string, itemName:string):TaskItemData[] => {
+  const fileContent = fs.readFileSync(fileName)
+  const parsedItems = JSON.parse(fileContent.toString())
+  //console.log(parsedItems)
+  let result = []
+  for (let task of parsedItems['data']['tasks']){
+    for (let objective of task['objectives']){
+      if ('items' in objective){
+        for (let item of objective['items']){
+          //console.log(item)
+          //@ts-ignore
+          if (item['name'] === itemName){
+            result.push({taskId:task['id'],
+              taskName:task['name'],
+              item:itemName,
+              count:objective['count']?objective['count']:1
+            })
+          }
+        }
+      }else {
+        //console.log('items not in objective')
+      }
+    }
+  }
+return result
+});
+ipcMain.handle('get-hideout-items', (e, itemName: string): JSON => {
+  const data = fs.readFileSync('../../hideoutItems.json')
   const hideoutData = JSON.parse(data.toString());
   const hideoutInfoList: any = [];
   console.log(hideoutData.data)

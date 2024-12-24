@@ -1,5 +1,5 @@
 import { ItemData } from "../../App";
-import { fetchHideoutItem, fetchItemDetails, fetchTaskItem } from "./queryInformation";
+import { fetchHideoutItem, fetchItemDetails } from "./queryInformation";
 
 export async function upload(lastUploadedImageHash: string, context: any, setUploadedImage: any): Promise<string> {
     const image: Electron.NativeImage = await window.API.getClipboardText();
@@ -51,7 +51,8 @@ export const handleImageUpload = async (file: File, context: any, setUploadedIma
                             fetchItemDetails(exactItemName),
                             //@ts-ignore
                             window.API['getHideoutItems'](exactItemName),
-                            fetchTaskItem(exactItemName)
+                            //@ts-ignore
+                           window.API['getTaskItemFromFile']('taskItems.json', exactItemName)
                         ]).then(([itemDetails, hideoutData, taskData]) => {
                             if (itemDetails) {
                                 itemDataList.push({
@@ -85,3 +86,4 @@ export const handleImageUpload = async (file: File, context: any, setUploadedIma
         console.log('The file is not a valid image.');
     }
 };
+
