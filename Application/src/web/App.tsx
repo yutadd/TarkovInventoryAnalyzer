@@ -19,6 +19,7 @@ import { Sidebar } from "./components/Sidebar";
 import { Main } from "./components/Main";
 import { Hint } from "./components/Hint";
 import { Language } from "./components/Language";
+import { error } from "console";
 export type TaskItemData = { taskId: string; taskName: string; item: string; count: number };
 export type ItemHideoutData = { station: string; level: number; item: string; count: number }
 export type ItemData = { id: string, name: string, buyFor: { price: number, source: string, currency: string }[], sellFor: { currency: string, price: number, vendor: { name: string } }[], image512pxLink: string, hideout: ItemHideoutData[], task: TaskItemData[] };
@@ -74,6 +75,7 @@ export const App = () => {
                     console.log("analyzeImageWithCv2: returning:", detectedItems);
                     return detectedItems;
                 }
+                
                 console.log("embeded analyze function in to window")
             }
         }, 100);

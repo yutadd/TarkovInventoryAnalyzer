@@ -59,21 +59,4 @@ export async function fetchHideoutItem(itemName: string): Promise<void | ItemHid
     }
 }
 
-export async function fetchTaskItem(itemName: string): Promise<void | TaskItemData[]> {
-    try {
-        const response = await fetch(`http://localhost:8080/search_tasks?item_name=${encodeURIComponent(itemName)}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return Array.isArray(data) ? data : [];
-    } catch (error) {
-        console.error('Error fetching task item:', error);
-    }
-}
 
