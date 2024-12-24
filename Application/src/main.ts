@@ -78,3 +78,23 @@ ipcMain.handle('getTaskItemFromFile', (e,fileName:string, itemName:string):TaskI
   }
 return result
 });
+ipcMain.handle('get-hideout-items', (e, itemName: string): JSON => {
+  const data = fs.readFileSync('../../hideoutItems.json')
+  const hideoutData = JSON.parse(data.toString());
+  const hideoutInfoList: any = [];
+  hideoutData.data.hideoutstations.forEach((station: { levels: any[]; name: any; }) => {
+      station.levels.forEach((level: { itemRequirements: any[]; level: any; }) => {
+          level.itemRequirements.forEach((requirement: { item: { name: any; }; count: any; }) => {
+              if(requirement.item.name === itemName){
+                  hideoutInfoList.push({
+                      station: station.name,
+                      level: level.level,
+                      item: itemName,
+                      count: requirement.count
+                  });
+              }
+          });
+      });
+  });
+  return hideoutInfoList;
+});

@@ -16,6 +16,8 @@ contextBridge.exposeInMainWorld('API', {
     return await ipcRenderer.invoke('get-local-image', filepass);
   }, getTemplateImages: async (): Promise<{ name: string, content: string }[]> => {
     return await ipcRenderer.invoke('get-template-images');
+  }, getHideoutItems: async (itemName: string): Promise<JSON> =>{
+    return await ipcRenderer.invoke('get-hideout-items', itemName);
   }, getTaskItemFromFile: async (fileName:string, itemName:string): Promise<TaskItemData[]> => {
     return await ipcRenderer.invoke('getTaskItemFromFile', fileName, itemName);
   }
