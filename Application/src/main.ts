@@ -82,7 +82,7 @@ ipcMain.handle('getTaskItemFromFile', (e,fileName:string, itemName:string):TaskI
 return result
 });
 ipcMain.handle('get-hideout-items', (e, itemName: string): JSON => {
-  const data = fs.readFileSync('../../hideoutItems.json')
+  const data = fs.readFileSync('hideoutItems.json')
   const hideoutData = JSON.parse(data.toString());
   const hideoutInfoList: any = [];
   console.log(hideoutData.data)
