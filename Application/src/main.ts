@@ -1,13 +1,12 @@
 import path from "node:path";
-import { BrowserWindow, app, ipcMain, clipboard, nativeImage } from "electron";
+import { BrowserWindow, app, ipcMain, clipboard, nativeImage, Menu } from "electron";
 // fsとpathをインポート
 import fs from "fs";
-import { ItemHideoutData } from "./web/App";
 import { TaskItemData } from "./web/App";
 
 app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     webPreferences: {
       sandbox: true,
       contextIsolation: true,
@@ -17,7 +16,9 @@ app.whenReady().then(() => {
     icon: __dirname + '../../assets/win/icon.ico',
   });
   mainWindow.loadFile("dist/index.html");
-  // mainWindow.webContents.openDevTools({ mode: "detach" });
+  const menuTemplate:Electron.MenuItemConstructorOptions[] = [{ label: 'File', submenu: [{ label: 'History', click: () => { mainWindow.webContents.send('menu-click','history');console.log('history');}, }, { type: 'separator' }, { label: '終了', click: () => { app.quit(); } }], }];
+  mainWindow.webContents.openDevTools({ mode: "detach" });
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 });
 
 
@@ -55,31 +56,32 @@ ipcMain.handle('get-template-images', (e,): { name: string, content: string }[] 
 });
 
 
-ipcMain.handle('getTaskItemFromFile', (e,fileName:string, itemName:string):TaskItemData[] => {
+ipcMain.handle('getTaskItemFromFile', (e, fileName: string, itemName: string): TaskItemData[] => {
   const fileContent = fs.readFileSync(fileName)
   const parsedItems = JSON.parse(fileContent.toString())
   //console.log(parsedItems)
   let result = []
-  for (let task of parsedItems['data']['tasks']){
-    for (let objective of task['objectives']){
-      if ('items' in objective){
-        for (let item of objective['items']){
+  for (let task of parsedItems['data']['tasks']) {
+    for (let objective of task['objectives']) {
+      if ('items' in objective) {
+        for (let item of objective['items']) {
           //console.log(item)
           //@ts-ignore
-          if (item['name'] === itemName){
-            result.push({taskId:task['id'],
-              taskName:task['name'],
-              item:itemName,
-              count:objective['count']?objective['count']:1
+          if (item['name'] === itemName) {
+            result.push({
+              taskId: task['id'],
+              taskName: task['name'],
+              item: itemName,
+              count: objective['count'] ? objective['count'] : 1
             })
           }
         }
-      }else {
+      } else {
         //console.log('items not in objective')
       }
     }
   }
-return result
+  return result
 });
 ipcMain.handle('get-hideout-items', (e, itemName: string): JSON => {
   const data = fs.readFileSync('hideoutItems.json')
@@ -87,20 +89,20 @@ ipcMain.handle('get-hideout-items', (e, itemName: string): JSON => {
   const hideoutInfoList: any = [];
   console.log(hideoutData.data)
   hideoutData.data.hideoutStations.forEach((station: { levels: any[]; name: any; }) => {
-    if(station.levels){
+    if (station.levels) {
       station.levels.forEach((level: { itemRequirements: any[]; level: any; }) => {
-        if(level.itemRequirements){
-            level.itemRequirements.forEach((requirement: { item: { name: any; }; count: any; }) => {
-              if(requirement){
-                  if(requirement.item.name === itemName){
-                    hideoutInfoList.push({
-                        station: station.name,
-                        level: level.level,
-                        item: itemName,
-                        count: requirement.count
-                    });
-                }
+        if (level.itemRequirements) {
+          level.itemRequirements.forEach((requirement: { item: { name: any; }; count: any; }) => {
+            if (requirement) {
+              if (requirement.item.name === itemName) {
+                hideoutInfoList.push({
+                  station: station.name,
+                  level: level.level,
+                  item: itemName,
+                  count: requirement.count
+                });
               }
+            }
           });
         }
       });

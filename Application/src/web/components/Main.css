@@ -12,8 +12,7 @@
 
 .usageimage {
     object-fit: cover; /* アスペクト比を維持しつつフィット */
-    width: 100%; /* 親要素の幅に合わせる */
-    max-width: 100%; /* グレー部分と同じ幅に制限 */
+    width: 65%;/* 親要素の幅に合わせる */
     height: auto; /* 高さをアスペクト比に応じて調整 */
     margin: auto;
     display: block;

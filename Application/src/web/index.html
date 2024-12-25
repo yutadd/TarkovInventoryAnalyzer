@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script async src="https://docs.opencv.org/4.x/opencv.js" onerror="alert('インターネット環境が必要です。OpenCV.jsの取得に失敗しました。');"></script>
+
+<head>
+    <script async src="https://docs.opencv.org/4.x/opencv.js"
+        onerror="alert('インターネット環境が必要です。OpenCV.jsの取得に失敗しました。');"></script>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:8080 docs.opencv.org 'unsafe-eval'; img-src 'self' data: blob: https://assets.tarkov.dev ;connect-src http://localhost:8080/ https://api.tarkov.dev data:;" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' http://localhost:8080 docs.opencv.org; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: blob: https://assets.tarkov.dev ;connect-src http://localhost:8080/ https://api.tarkov.dev data:;" />
     <title>TarkovInventoryAnalyzer</title>
-  </head>
-  <body>
+</head>
+
+<body>
+    <script>
+        const checkOpenCv = setInterval(() => {
+            if (window.cv && window.cv.Mat) {
+                clearInterval(checkOpenCv);
+                window['analyzeImageWithCv2'] = async (image) => {
+                    // アイテム名のリストを初期化
+                    const detectedItems = [];
+                    const files = await window.API.getTemplateImages();
+                    console.log("analyzeImageWithCv2: received following template images:", files)
+                    const imgElement2 = new Image();
+                    imgElement2.src = `data:image/png;base64,${image}`;
+                    // すべてのテンプレート画像の処理をPromiseでラップ
+                    await new Promise((resolve) => {
+                        imgElement2.onload = () => {
+                            const promises = files.map(({ name, content }) => {
+                                return new Promise((resolve) => {
+                                    const imgElement = new Image();
+                                    imgElement.src = `data:image/png;base64,${content}`;
+                                    imgElement.onload = () => {
+                                        const template = window.cv.imread(imgElement);
+                                        const result = new window.cv.Mat();
+                                        window.cv.matchTemplate(window.cv.imread(imgElement2), template, result, window.cv.TM_CCOEFF_NORMED);
+
+                                        const threshold = 0.77;
+                                        const locations = window.cv.minMaxLoc(result);
+
+                                        if (locations.maxVal >= threshold) {
+                                            console.log(name);
+                                            detectedItems.push(name);
+                                        }
+
+                                        result.delete();
+                                        template.delete();
+                                        resolve(); // このテンプレート画像の処理が完了したことを示す
+                                    };
+                                });
+                            });
+
+                            // すべてのテンプレート画像の処理が完了するのを待つ
+                            Promise.all(promises).then(() => {
+                                resolve(); // すべての画像の処理が完了したことを示す
+                            });
+                        };
+                    });
+
+                    console.log("analyzeImageWithCv2: returning:", detectedItems);
+                    return detectedItems;
+                }
+
+                console.log("embeded analyze function in to window")
+            }
+        }, 100);</script>
     <div id="root"></div>
-  </body>
+</body>
+
 </html>

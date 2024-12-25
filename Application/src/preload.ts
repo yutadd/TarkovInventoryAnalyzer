@@ -1,3 +1,4 @@
+import { removeAllListeners } from "process";
 import { ItemHideoutData } from "./web/App";
 import { TaskItemData } from "./web/App";
 
@@ -23,3 +24,16 @@ contextBridge.exposeInMainWorld('API', {
     return await ipcRenderer.invoke('getTaskItemFromFile', fileName, itemName);
   }
 });
+contextBridge.exposeInMainWorld('electron',{
+  ipcRenderer:{
+    on:(channel:any,func:any)=>{
+      const validChannels=['menu-click'];
+      if(validChannels.includes(channel)){
+        ipcRenderer.on(channel,(event,...args)=>func(...args));
+      }
+    },
+    removeAllListeners:(channel:any)=>{
+      ipcRenderer.removeAllListeners(channel)
+    }
+  }
+})
