@@ -8,11 +8,11 @@ export const Main = () => {
     const context = useContext<contextType>(AppContext);
     useEffect(() => {
         async function getUrl() {
-            setObjectUrl(await window.API.getLocalText("assets\\usage.png"))
+            setObjectUrl(await window.API.getLocalText("assets\\usage_en.png"))
         }
         console.log(context.dateKeyedItemGroup, context.loading, context.selectedTimeStamp)
         getUrl()
-    },[context.dateKeyedItemGroup,context.loading,context.selectedTimeStamp]);
+    },[context.selectedLanguage]);
     return (
         <div className="Main">
             <UploadImage/>
