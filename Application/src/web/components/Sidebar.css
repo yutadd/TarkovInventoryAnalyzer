@@ -4,33 +4,37 @@
     top:0px;
 }
 .Sidebar{
+    opacity: 100%;
     width:30vw;
     height:100vh;
     display:inline-block;
     overflow-y: scroll;
     vertical-align: top;
     background-color: white;
-    border-right:2px solid black;
 }
 @media screen and (max-width: 768px) {
     .Sidebar {
         display: none;
     }
 }
+.ItemList{
+    margin:0px;
+    padding-inline-start:40px;
+}
 .ItemListLink{
     display:block;
-    padding-left: 20px;
+    padding-left: 0px;
+    font-size: 15px;
 }
 .ExpandSidebar{
-    height: 25px;
-    width:25px;
+    height: 100vh;
+    width:calc(100vw - 30vw);
     font-size: 17px;
     writing-mode: vertical-lr;
     word-wrap: break-word;
     display: inline-block;
-    background-color: white;
+    background-color: gray;
+    opacity: 50%;
     text-align: center;
-    border-right:2px solid black;
-    border-bottom: 2px solid black;
 }
 /* End of Selection */

@@ -9,11 +9,10 @@ export const Sidebar = () => {
     useEffect(() => {
         setItemList([
             <details key="all" open>
-                <summary>({context.dateKeyedItemGroup.length === 0 ? "NONE" : "ALL"})</summary>
+                <summary >({context.dateKeyedItemGroup.length === 0 ? "NONE" : "ALL"})</summary>
                 {context.dateKeyedItemGroup.map((dateKeyedItemList, index) => (
-                    <details key={index} open>
+                    <details key={index} >
                         <summary>
-                            {index === context.dateKeyedItemGroup.length - 1 ? "└ " : "├ "}
                             <a
                                 href="#"
                                 onClick={() => context.setSelectedTimeStamp(dateKeyedItemList.date)}
@@ -28,7 +27,6 @@ export const Sidebar = () => {
                                         className="ItemListLink"
                                         href={"#" + itemDetail.name}
                                     >
-                                        {idx === dateKeyedItemList.itemDataList.length - 1 ? "└ " : "├ "}
                                         {itemDetail.name}
                                     </a>
                                 </li>
@@ -52,7 +50,6 @@ export const Sidebar = () => {
                 className="ExpandSidebar"
                 onClick={() => context.setIsSidebarShown((before: boolean) => !before)}
             >
-                {"X"}
             </div>
             </>
             )}
