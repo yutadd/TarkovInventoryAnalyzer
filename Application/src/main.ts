@@ -16,7 +16,39 @@ app.whenReady().then(() => {
     icon: __dirname + '../../assets/win/icon.ico',
   });
   mainWindow.loadFile("dist/index.html");
-  const menuTemplate:Electron.MenuItemConstructorOptions[] = [{ label: 'File', submenu: [{ label: 'History', click: () => { mainWindow.webContents.send('menu-click','history');console.log('history');}, }, { type: 'separator' }, { label: '終了', click: () => { app.quit(); } }], }];
+  const menuTemplate:Electron.MenuItemConstructorOptions[] = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'History',
+          click: () => {
+            mainWindow.webContents.send('menu-click','history');
+            console.log('history');
+          },
+        },
+        { type: 'separator' },
+        { label: '終了', click: () => { app.quit(); } }
+      ],
+    },
+    {
+      label:"Language",
+      submenu:[
+        {
+          label:"日本語",
+          click:()=>{
+            mainWindow.webContents.send("menu-click","lang-ja");
+          }
+        },
+        {
+          label:"English",
+          click:()=>{
+            mainWindow.webContents.send("menu-click","lang-en")
+          }
+        }
+      ]
+    }
+  ];
   mainWindow.webContents.openDevTools({ mode: "detach" });
   Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 });
