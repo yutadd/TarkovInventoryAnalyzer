@@ -1,14 +1,23 @@
+.AutomaticPasteController{
+    width:95%;
+    display:inline-block;
+    text-align: left;
+    padding-bottom:5px
+}
 .AskAutoPasteText {
     font-size: 20px;
     margin: 0px;
 }
-
+.UploadImagePane{
+    width:100%;
+    text-align: center;
+}
 .ImageSelectionPane {
     background-color: gray;
-    width: 100%;
+    width: 95%;
     height: 200px;
     border: 2px dashed #ccc;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
 }
@@ -19,11 +28,9 @@
 .UploadedImagePreview{
     padding-top: 20px;
 }
-.RefleshTimeBar{
-    margin-bottom: 20px;
-}
 .DropText{
     font-size: 30px;
+    padding-top:50px;
     color:#ddd
 }
 .ImagePreviewContainer{

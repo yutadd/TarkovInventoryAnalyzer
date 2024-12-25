@@ -43,16 +43,19 @@ export const Sidebar = () => {
     return (
         <div className="SidebarContainer">
             {context.isSidebarShown && (
+                <>
                 <div className="Sidebar">
                     {itemList}
                 </div>
-            )}
+            
             <div
                 className="ExpandSidebar"
                 onClick={() => context.setIsSidebarShown((before: boolean) => !before)}
             >
-                {context.isSidebarShown ? "hide　⋁" : "menu　∧"}
+                {"X"}
             </div>
+            </>
+            )}
         </div>
     );
 };

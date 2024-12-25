@@ -26,27 +26,29 @@ export const UploadImage = () => {
     }, [autoPaste]);
     return (
         <div className="UploadImagePane">
-            <label>
-                <input
-                    type="checkbox"
-                    checked={autoPaste}
-                    onChange={(e) => setAutoPaste(e.target.checked)}
-                />
-                <span className="AskAutoPasteText">Paste image from clipboard automatically</span>
-            </label>
-            <div className="RefleshTimeBar">
+            <div className="AutomaticPasteController">
                 <label>
-                    <span>Retrive Clipboard between (ms): </span>
                     <input
-                        type="range"
-                        min="100"
-                        max="5000"
-                        step="100"
-                        value={refleshTime}
-                        onChange={(e) => setRefleshTime(Number(e.target.value))}
+                        type="checkbox"
+                        checked={autoPaste}
+                        onChange={(e) => setAutoPaste(e.target.checked)}
                     />
-                    <span>{refleshTime} ms</span>
+                    <span className="AskAutoPasteText">Paste image from clipboard automatically</span>
                 </label>
+                <div>
+                    <label>
+                        <span>Retrive Clipboard between (ms): </span>
+                        <input
+                            type="range"
+                            min="100"
+                            max="5000"
+                            step="100"
+                            value={refleshTime}
+                            onChange={(e) => setRefleshTime(Number(e.target.value))}
+                        />
+                        <span>{refleshTime} ms</span>
+                    </label>
+                </div>
             </div>
             <div
                 className="ImageSelectionPane"
@@ -76,7 +78,7 @@ export const UploadImage = () => {
                     </div>
                 </div>
             )}
-            {context.loading?<Loading />:<></>}
+            {context.loading ? <Loading /> : <></>}
         </div>
     );
 };

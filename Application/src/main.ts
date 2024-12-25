@@ -20,14 +20,6 @@ app.whenReady().then(() => {
     {
       label: 'File',
       submenu: [
-        {
-          label: 'History',
-          click: () => {
-            mainWindow.webContents.send('menu-click','history');
-            console.log('history');
-          },
-        },
-        { type: 'separator' },
         { label: '終了', click: () => { app.quit(); } }
       ],
     },
@@ -47,6 +39,12 @@ app.whenReady().then(() => {
           }
         }
       ]
+    },
+    {
+      label:"History",
+      click: () => {
+        mainWindow.webContents.send('menu-click','history');
+      },
     }
   ];
   mainWindow.webContents.openDevTools({ mode: "detach" });

@@ -33,8 +33,9 @@ export const App = () => {
     const [selectedLanguage, setSelectedLanguage] = useState<"en" | "ja">("en")
     useEffect(() => {
         window.electron.ipcRenderer.on('menu-click', (event:any, message:any) => {
+            console.log(event)
             if (event === 'history') {
-                
+                setIsSidebarShown(previous=>!previous)
             }else if(event==="lang-ja"){
                 setSelectedLanguage("ja");
             }else if (event==="lang-en"){
@@ -50,10 +51,8 @@ export const App = () => {
     return (
         <AppContext.Provider value={{ loading, setLoading, dateKeyedItemGroup, setDateKeyedItemGroup, selectedTimeStamp: selectedTimeStamp, setSelectedTimeStamp: setSelectedTimeStamp, isSidebarShown, setIsSidebarShown, isHintShown, setIsHintShown, selectedLanguage, setSelectedLanguage }}>
             <div className="Container">
-                <Sidebar />
                 <Main />
-                <Hint />
-                {/*<Language />*/}
+                <Sidebar />
             </div>
         </AppContext.Provider>
     );

@@ -4,8 +4,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: left;
-    padding-left: 35px;
-    padding-top: 50px;
+    padding-top: 5px;
     overflow: scroll;
     scrollbar-width: thin;
 }
@@ -16,24 +15,4 @@
     height: auto; /* 高さをアスペクト比に応じて調整 */
     margin: auto;
     display: block;
-}
-
-.ImageSelectionPane {
-    background-color: gray;
-    width: 100%; /* 親要素の幅に基づく */
-    height: 200px;
-    border: 2px dashed #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media screen and (max-width: 768px) {
-    .Main {
-        width: 100%;
-    }
-    .usageimage {
-        width: 100%; /* 小さい画面でも親要素に収まるようにする */
-        height: auto; /* 高さはアスペクト比に従う */
-    }
 }
