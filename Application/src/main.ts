@@ -3,6 +3,7 @@ import { BrowserWindow, app, ipcMain, clipboard, nativeImage, Menu } from "elect
 // fsとpathをインポート
 import fs from "fs";
 import { TaskItemData } from "./web/App";
+const {exec}=require('child_process')
 
 app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
@@ -44,6 +45,17 @@ app.whenReady().then(() => {
       label:"History",
       click: () => {
         mainWindow.webContents.send('menu-click','history');
+      },
+    },
+    {
+      label:"Hint",
+      click: () => {
+        const imagePath = "assets\\usage_en.png"
+        exec("start "+imagePath,(error:any,stdout:any,stderr:any) => {
+          if(error||stderr){
+            console.error("エラー発生",error,stderr)
+          }
+        })
       },
     }
   ];
