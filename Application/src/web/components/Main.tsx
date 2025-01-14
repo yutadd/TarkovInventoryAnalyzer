@@ -17,7 +17,10 @@ export const Main = () => {
         <div className="Main">
             <UploadImage/>
             <ItemInformationPanelList/>
-            <img className="usageimage" src={objectUrl} alt="" />
+            {
+                context.dateKeyedItemGroup.length === 0 ? <img className="usageimage" src={objectUrl} alt="" />:<></>
+            }
+            
         </div>
     );
 };
