@@ -8,7 +8,7 @@ export const Main = () => {
     const context = useContext<contextType>(AppContext);
     useEffect(() => {
         async function getUrl() {
-            setObjectUrl(await window.API.getLocalText("assets\\usage_en.png"))
+            setObjectUrl(await window.API.getLocalText(context.selectedLanguage==="en"?"assets\\usage_en.png":"assets\\usage_en.png"))
         }
         console.log(context.dateKeyedItemGroup, context.loading, context.selectedTimeStamp)
         getUrl()
