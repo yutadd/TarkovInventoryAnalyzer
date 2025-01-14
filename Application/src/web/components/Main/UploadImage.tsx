@@ -33,11 +33,11 @@ export const UploadImage = () => {
                         checked={autoPaste}
                         onChange={(e) => setAutoPaste(e.target.checked)}
                     />
-                    <span className="AskAutoPasteText">Paste image from clipboard automatically</span>
+                    <span className="AskAutoPasteText">{context.selectedLanguage === "en" ? "Paste image from clipboard automatically" : "画像を自動的にクリップボードから張り付ける"}</span>
                 </label>
                 <div>
                     <label>
-                        <span>Retrive Clipboard between (ms): </span>
+                        <span>{context.selectedLanguage === "en" ? "Retrive Clipboard between (ms)" : "クリップボードの取り出し(ms)"}</span>
                         <input
                             type="range"
                             min="100"
@@ -68,7 +68,7 @@ export const UploadImage = () => {
                 }}
                 onDragOver={(e) => e.preventDefault()}
             >
-                <p className="DropText">OR Drop your file here</p>
+                <p className="DropText">{context.selectedLanguage === "en" ? "OR Drop your file here" : "またはここにファイルをドロップする"}</p>
             </div>
             {uploadedImage && (
                 <div className="UploadedImagePreview">
