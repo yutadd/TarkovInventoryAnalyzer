@@ -25,9 +25,9 @@ export const Sidebar = () => {
                                 <li key={idx}>
                                     <a
                                         className="ItemListLink"
-                                        href={"#" + itemDetail.name}
+                                        href={"#" + itemDetail.name.split("§")[0]}
                                     >
-                                        {itemDetail.name}
+                                        {context.selectedLanguage === "en" ? itemDetail.name.split("§")[0] : itemDetail.name.split("§")[1]}
                                     </a>
                                 </li>
                             ))}
